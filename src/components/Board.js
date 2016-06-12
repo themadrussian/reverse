@@ -26,43 +26,44 @@ var Board = React.createClass({
 
   },
 
-  handleTap: function(id, col, row){
-    /*
-        Sample: 5, 1, 1
-        ID=this.props.cols*col(4*1) + row(1) = 5
-        So, neighbors are:
-          row+1, col: this.props.cols*col + (row + 1) = 6
-          row-1, col: this.props.cols*col + (row - 1) = 4
-          row, col+1: this.props.cols*(col+1) + row  = 9
-          row, col-1: this.props.cols*(col-1) + row  = 1
-
-        Need to check for positive values
-    */
+  handleTap: function(id, row, col){
     console.log('pressed row:', row, ' col: ', col, ' id: ', id, 'and color was: ', this.state.color[id]);
 
     // change the pressed button
     this.changeColor(id);
 
     // now change colors on all neighbors
-    // one to the right
-    if ( (this.props.cols*col + (row + 1)) >= 0 ) {
-      this.changeColor(this.props.cols*col + (row + 1));
+
+    // one to the right: same row, col+1. check col+1 < this.props.cols.
+    if ( (col + 1) < this.props.cols ) {
+      this.changeColor(this.props.rows*row + (col + 1));
+      console.log('changing: right', this.props.rows*row + (col + 1));
     }
-    // one to the left
-    if ( (this.props.cols*col + (row - 1)) >= 0 ) {
-      this.changeColor(this.props.cols*col + (row - 1));
+    // one to the left: same row, col-1. check col-1 >= 0
+    if ( (col - 1) >= 0 ) {
+      this.changeColor(this.props.rows*row + (col - 1));
+      console.log('changing: left', this.props.rows*row + (col - 1));
     }
-    // one on top
-    if ( (this.props.cols*(col-1) + row) >= 0 ) {
-      this.changeColor(this.props.cols*(col-1) + row);
+    // one on top: same col, row-1. check row-1 >= 0
+    if ( (row - 1) >= 0 ) {
+      this.changeColor(this.props.rows*(row-1) + col);
+      console.log('changing: top', this.props.rows*(row-1) + col);
     }
-    // one below
-    if ( (this.props.cols*(col+1) + row) >= 0 ) {
-      this.changeColor(this.props.cols*(col+1) + row);
+    // one below: same col, row+1, check row+1 < this.props.rows
+    if ( (row + 1) < this.props.rows ) {
+      this.changeColor(this.props.rows*(row+1) + col);
+      console.log('changing: bottom', this.props.rows*(row+1) + col);
     }
 
     // and re-render the Board
     this.forceUpdate();
+  },
+
+  componentDidUpdate: function() {
+    // check that we have an all green event!
+    if (!this.state.color.includes('red')) {
+      alert("Well Done!");
+    }
   },
 
   render: function() {

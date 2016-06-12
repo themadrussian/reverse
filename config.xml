@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.reacthotloadingtemplate" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Hello World</name>
+    <name>Reverse</name>
     <description>
-		Hello World sample application using React, Webpack and Hot Reloading.
+		A small game
 	</description>
-    <author email="support@phonegap.com" href="https://github.com/JedWatson">
-		Jed Watson and the PhoneGap Team
+    <author email="mark@ntelligent.ly" href="https://github.com/themadrussian/reverse">
+		Mark Rogov and ntelligent team
 	</author>
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
@@ -92,11 +92,11 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
-        <content src="http://10.0.2.2:8080/index.html" />
+        <content src="index.html" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
-        <content src="http://localhost:8080/index.html" />
+        <content src="index.html" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <allow-navigation href="http://*/*" />

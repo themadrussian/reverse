@@ -25,9 +25,7 @@ const App = React.createClass({
 			<div>
         <CSSTransitionGroup transitionName={ animationName }
             transitionEnterTimeout={ 300 } transitionLeaveTimeout={ 300 }>
-						{/* Remove the below component and its children */}
-						{/* and replace with your own */}
-						<Board cols="3" rows="3"/>
+						<Board cols="5" rows="5"/>
         </CSSTransitionGroup>
 			</div>
 		);
