@@ -8,12 +8,23 @@ var Board = React.createClass({
     };
   },
 
-  componentWillMount: function() {
-    this.setState({red: this.props.cols*this.props.rows});
-    this.setState({green: 0});
+  resetColors: function(reset) {
     for (var i = 0; i < this.props.cols*this.props.rows; i++) {
+      if(reset === 0) {
+        //force reset on everything
        this.state.color[i]='red';
+      } else {
+        //only fill out undefined
+        if (this.state.color[i] === undefined) {
+          this.state.color[i]='red';
+        }
+      }
     };
+
+  },
+
+  componentWillMount: function() {
+    this.resetColors(0);
     console.log('Inside Board componentWillMount: ', this.state.color);
   },
 
@@ -61,12 +72,39 @@ var Board = React.createClass({
 
   componentDidUpdate: function() {
     // check that we have an all green event!
-    if (!this.state.color.includes('red')) {
-      alert("Well Done!");
+    var checker = new Array(this.props.cols*this.props.rows);
+    for (var i=0; i<this.props.cols*this.props.rows; i+=1){
+      checker[i] = this.state.color[i];
     }
+
+    // now see if there is 'red' anywhere in checker
+    if (!checker.includes('red')) {
+      // No 'red' found? VICTORY
+      console.log('Checker dimensions: ', this.props.cols, 'by', this.props.rows);
+      alert("Well Done!");
+
+      //Now, reset back to default
+      this.resetColors(0);
+
+      //re-render
+      this.forceUpdate();
+    }
+
   },
 
   render: function() {
+    //check color array (to account for re-rerender)
+    /*for (var c=0; c<this.props.cols*this.props.rows; c+=1){
+      //console.log('checking element ', c, 'it is now: ', this.state.color[c]);
+      if (this.state.color[c] === undefined) { //"red" || this.state.color[i] !== "green"){
+        console.log('fixing element ', c, 'from', this.state.color[c], 'to red');
+        this.state.color[c] = 'red';
+      }
+    }
+    */
+    //fix this.state.color and fill undefined with 'red'
+    this.resetColors(1);
+
     var k = 0;
     var row = new Array;
 
@@ -78,7 +116,7 @@ var Board = React.createClass({
               onTap={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
               className="cell"
               style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
-              {((Number(this.props.cols)*k)+index)}
+
           </Tappable>
         );
       }.bind(this));

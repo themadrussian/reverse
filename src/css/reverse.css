@@ -1,15 +1,20 @@
 /* Styles go here */
 
 html, body {
-    width:100%;
-    height:100%;
-    margin:0;
-    padding:0;
-    text-align: center;
-    vertical-align: center;
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  text-align: center;
+
+}
+.big {
+  display: inline-block;
+  margin-top: 25%;
+
 }
 .table {
-    display:table;
+    display:inline-block;
     border:0x solid #000;
 }
 .cell {
@@ -17,4 +22,8 @@ html, body {
     width:50px;
     height:50px;
     border:1px solid #CCC;
+}
+.bottom {
+  display: block;
+  margin-top: 100px;
 }
