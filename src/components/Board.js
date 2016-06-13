@@ -5,6 +5,7 @@ var Board = React.createClass({
   getInitialState: function(){
     return {
       color: [],
+      //update: this.props.update,
     };
   },
 
@@ -26,6 +27,16 @@ var Board = React.createClass({
   componentWillMount: function() {
     this.resetColors(0);
     console.log('Inside Board componentWillMount: ', this.state.color);
+  },
+
+  componentWillReceiveProps: function(nextProps){
+    //compare new and old props
+    console.log("new props update:", nextProps.update);
+    if (nextProps.update === 1){
+      //refill the Array
+      this.resetColors(0);
+
+    }
   },
 
   changeColor: function(id) {
@@ -93,17 +104,13 @@ var Board = React.createClass({
   },
 
   render: function() {
-    //check color array (to account for re-rerender)
-    /*for (var c=0; c<this.props.cols*this.props.rows; c+=1){
-      //console.log('checking element ', c, 'it is now: ', this.state.color[c]);
-      if (this.state.color[c] === undefined) { //"red" || this.state.color[i] !== "green"){
-        console.log('fixing element ', c, 'from', this.state.color[c], 'to red');
-        this.state.color[c] = 'red';
-      }
-    }
-    */
     //fix this.state.color and fill undefined with 'red'
-    this.resetColors(1);
+    if (this.props.update === 1 && this.state.update === 0){
+      this.resetColors(0);
+      this.state.update = 1;
+    } else {
+      this.resetColors(1);
+    }
 
     var k = 0;
     var row = new Array;

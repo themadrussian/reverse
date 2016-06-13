@@ -13,7 +13,8 @@ const App = React.createClass({
 		return {
 			animationName: 'push',
 			rows: 3,
-			cols: 3
+			cols: 3,
+			update: 0
 		}
 	},
 	componentWillMount() {
@@ -22,6 +23,7 @@ const App = React.createClass({
 	componentWillUnmount() {
 		// Lifecycle function that is triggered just before a component unmounts
 	},
+
 	reShape: function(rows, cols) {
 		// if(document.getElementById("rows").value != null &&
 		//	 document.getElementById("cols").value != null){
@@ -29,6 +31,7 @@ const App = React.createClass({
 		console.log("Updating with: ", rows, "rows and ", cols, "cols");
 		this.state.rows = rows;
 		this.state.cols = cols;
+		this.state.update = 1;
 
 		console.log("rows:", this.state.rows, "cols:", this.state.cols);
 
@@ -38,18 +41,19 @@ const App = React.createClass({
 	render() {
     const { animationName } = this.state;
 		return (
-			<div className="big">
+			<div className="_all">
+				<div className="top_bar">
+					<br /><br />
+					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 3, 3)}>3x3</Tappable>&nbsp;
+					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 4, 4)}>4x4</Tappable>&nbsp;
+					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 5, 5)}>5x5</Tappable>
+    		</div>
+				<div className="board">
         <CSSTransitionGroup transitionName={ animationName }
             transitionEnterTimeout={ 300 } transitionLeaveTimeout={ 300 }>
-						<Board rows={this.state.rows} cols={this.state.cols}/>
+						<Board rows={this.state.rows} cols={this.state.cols} update={this.state.update}/>
         </CSSTransitionGroup>
-				<div className="bottom">
-
-					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 3, 3)}>3x3</Tappable><br />
-					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 4, 4)}>4x4</Tappable><br />
-					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 5, 5)}>5x5</Tappable><br />
-
-    		</div>
+				</div>
 			</div>
 		);
 	},
