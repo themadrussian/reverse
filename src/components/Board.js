@@ -5,6 +5,8 @@ var Board = React.createClass({
   getInitialState: function(){
     return {
       color: [],
+      won: "",
+      steps: 0,
       //update: this.props.update,
     };
   },
@@ -35,6 +37,8 @@ var Board = React.createClass({
     if (nextProps.update === 1){
       //refill the Array
       this.resetColors(0);
+      this.state.steps = 0; //reset step counter
+      this.state.won="";
 
     }
   },
@@ -50,6 +54,10 @@ var Board = React.createClass({
 
   handleTap: function(id, row, col){
     console.log('pressed row:', row, ' col: ', col, ' id: ', id, 'and color was: ', this.state.color[id]);
+
+    //step counter
+    this.state.steps++;
+    this.state.won="";
 
     // change the pressed button
     this.changeColor(id);
@@ -92,7 +100,8 @@ var Board = React.createClass({
     if (!checker.includes('red')) {
       // No 'red' found? VICTORY
       console.log('Checker dimensions: ', this.props.cols, 'by', this.props.rows);
-      alert("Well Done!");
+      //alert("Well Done! Steps: ", this.state.steps);
+      this.state.won = "Well Done!";
 
       //Now, reset back to default
       this.resetColors(0);
@@ -141,6 +150,11 @@ var Board = React.createClass({
                 )
             })
           }
+          <br />
+          Steps: {this.state.steps}
+          <div className="won">
+            {this.state.won}
+          </div>
         </div>
     );
   }
