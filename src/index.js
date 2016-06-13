@@ -45,9 +45,9 @@ const App = React.createClass({
         </CSSTransitionGroup>
 				<div className="bottom">
 
-					<Tappable onTap={this.reShape.bind(null, 3, 3)}>3x3</Tappable><br />
-					<Tappable onTap={this.reShape.bind(null, 4, 4)}>4x4</Tappable><br />
-					<Tappable onTap={this.reShape.bind(null, 5, 5)}>5x5</Tappable><br />
+					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 3, 3)}>3x3</Tappable><br />
+					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 4, 4)}>4x4</Tappable><br />
+					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 5, 5)}>5x5</Tappable><br />
 
     		</div>
 			</div>

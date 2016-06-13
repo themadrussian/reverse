@@ -26,4 +26,20 @@ html, body {
 .bottom {
   display: block;
   margin-top: 100px;
+  position:relative;
+  bottom: 0;
+  text-align: center;
+}
+.button {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 5px;
+  background: rgba(17, 124, 193, 0.1);
+  /* margin-top: 15px */
+  color: #117CC1;
+  text-transform: uppercase;
+  hover-border-top-color: rgba(17, 124, 193, 0.7);
+  hover-background: rgba(17, 124, 193, 0.6);
+  active-border-top-color: rgba(17, 124, 193, 0.4);
+  active-background: rgba(17, 124, 193, 0.4);
 }
