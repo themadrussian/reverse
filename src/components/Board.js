@@ -1,7 +1,6 @@
 import React from 'react';
 import Tappable from 'react-tappable';
 
-import { SliderPicker } from 'react-color';
 
 
 var Board = React.createClass({
@@ -10,8 +9,8 @@ var Board = React.createClass({
       color: [],
       won: "",
       steps: 0,
-      colorA: 'red',
-      colorB: 'green',
+      //colorA: this.props.colorA,
+      //colorB: this.props.colorB,
       //update: this.props.update,
     };
   },
@@ -20,11 +19,11 @@ var Board = React.createClass({
     for (var i = 0; i < this.props.cols*this.props.rows; i++) {
       if(reset === 0) {
         //force reset on everything
-       this.state.color[i]=this.state.colorA;
+       this.state.color[i]=this.props.colorA;
       } else {
         //only fill out undefined
-        if (this.state.color[i] === undefined) {
-          this.state.color[i]=this.state.colorA;
+        if (this.state.color[i] === undefined || this.state.color[i] !== this.props.colorB ) {
+          this.state.color[i]=this.props.colorA;
         }
       }
     };
@@ -49,10 +48,10 @@ var Board = React.createClass({
   },
 
   changeColor: function(id) {
-    if (this.state.color[id] === this.state.colorA) {
-      this.state.color[id] = this.state.colorB;
+    if (this.state.color[id] === this.props.colorA) {
+      this.state.color[id] = this.props.colorB;
     } else {
-      this.state.color[id] = this.state.colorA;
+      this.state.color[id] = this.props.colorA;
     }
 
   },
@@ -102,20 +101,21 @@ var Board = React.createClass({
     }
 
     // now see if there is 'colorA' anywhere in checker
-    if (!checker.includes(this.state.colorA)) {
+    if (!checker.includes(this.props.colorA)) {
       // No 'colorA' found? VICTORY
       console.log('Checker dimensions: ', this.props.cols, 'by', this.props.rows);
       //alert("Well Done! Steps: ", this.state.steps);
-      this.state.won = "Well Done!";
+      this.setState({won: "Well Done!"});
 
       //Now, reset back to default
       this.resetColors(0);
 
       //re-render
-      this.forceUpdate();
+      //this.forceUpdate();
     }
 
   },
+
 
   render: function() {
     //fix this.state.color and fill undefined with 'this.state.colorA'
@@ -157,10 +157,7 @@ var Board = React.createClass({
           }
           <br />
           Steps: {this.state.steps}
-          <div className="ColorPicker" >
-            <br />
-            <SliderPicker />
-          </div>
+
           <div className="won">
             {this.state.won}
           </div>
