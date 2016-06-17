@@ -1,12 +1,17 @@
 import React from 'react';
 import Tappable from 'react-tappable';
 
+import { SliderPicker } from 'react-color';
+
+
 var Board = React.createClass({
   getInitialState: function(){
     return {
       color: [],
       won: "",
       steps: 0,
+      colorA: 'red',
+      colorB: 'green',
       //update: this.props.update,
     };
   },
@@ -15,11 +20,11 @@ var Board = React.createClass({
     for (var i = 0; i < this.props.cols*this.props.rows; i++) {
       if(reset === 0) {
         //force reset on everything
-       this.state.color[i]='red';
+       this.state.color[i]=this.state.colorA;
       } else {
         //only fill out undefined
         if (this.state.color[i] === undefined) {
-          this.state.color[i]='red';
+          this.state.color[i]=this.state.colorA;
         }
       }
     };
@@ -44,10 +49,10 @@ var Board = React.createClass({
   },
 
   changeColor: function(id) {
-    if (this.state.color[id] === 'red') {
-      this.state.color[id] = 'green';
+    if (this.state.color[id] === this.state.colorA) {
+      this.state.color[id] = this.state.colorB;
     } else {
-      this.state.color[id] = 'red';
+      this.state.color[id] = this.state.colorA;
     }
 
   },
@@ -96,9 +101,9 @@ var Board = React.createClass({
       checker[i] = this.state.color[i];
     }
 
-    // now see if there is 'red' anywhere in checker
-    if (!checker.includes('red')) {
-      // No 'red' found? VICTORY
+    // now see if there is 'colorA' anywhere in checker
+    if (!checker.includes(this.state.colorA)) {
+      // No 'colorA' found? VICTORY
       console.log('Checker dimensions: ', this.props.cols, 'by', this.props.rows);
       //alert("Well Done! Steps: ", this.state.steps);
       this.state.won = "Well Done!";
@@ -113,7 +118,7 @@ var Board = React.createClass({
   },
 
   render: function() {
-    //fix this.state.color and fill undefined with 'red'
+    //fix this.state.color and fill undefined with 'this.state.colorA'
     if (this.props.update === 1 && this.state.update === 0){
       this.resetColors(0);
       this.state.update = 1;
@@ -152,6 +157,10 @@ var Board = React.createClass({
           }
           <br />
           Steps: {this.state.steps}
+          <div className="ColorPicker" >
+            <br />
+            <SliderPicker />
+          </div>
           <div className="won">
             {this.state.won}
           </div>

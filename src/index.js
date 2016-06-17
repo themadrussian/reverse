@@ -7,6 +7,7 @@ import Tappable from 'react-tappable';
 
 import Board from './components/Board';
 
+
 const App = React.createClass({
 	getInitialState() {
 		//return StepStore.getState();
@@ -42,8 +43,10 @@ const App = React.createClass({
     const { animationName } = this.state;
 		return (
 			<div className="_all">
+				<div className="settings">
+    			<a href="settings.js"><img src="./img/Gear.png" height="30"/></a>
+    		</div>
 				<div className="top_bar">
-					<br /><br />
 					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 3, 3)}>3x3</Tappable>&nbsp;
 					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 4, 4)}>4x4</Tappable>&nbsp;
 					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 5, 5)}>5x5</Tappable>

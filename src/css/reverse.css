@@ -12,10 +12,13 @@ html, body {
   display: inline-block;
   margin-top: 5%;
 }
+.settings {
+  margin-top: 20px;
+}
 .top_bar {
   display: block;
-  height: 100px;
-  margin-top: 20px;
+  /*height: 100px;*/
+  /*margin-top: 20px;*/
   text-align: center;
 }
 .table {
@@ -58,5 +61,24 @@ html, body {
   	text-align: center;
   	font-size: 120%;
   	height: 18px;
+    margin-top: 20px;
+}
+.ColorPicker{
+    display: block;
+  	position: absolute;
+  	top: auto;
+  	bottom: 40px;
+  	right: 0;
+  	left: 0;
+  	border-radius: 2px;
+  	outline: none;
+  	background: #ffffff;
+  	color: #117CC1;
+  	box-shadow: 0 0 3px rgba(0,0,0,0.3);
+  	padding: 10px;
+  	text-decoration: none;
+  	text-align: center;
+  	font-size: 120%;
+  	
     margin-top: 20px;
 }
