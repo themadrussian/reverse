@@ -26,8 +26,7 @@ var Board = React.createClass({
           this.state.color[i]=this.props.colorA;
         }
       }
-    };
-
+    }
   },
 
   componentWillMount: function() {

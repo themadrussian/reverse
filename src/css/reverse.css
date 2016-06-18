@@ -10,7 +10,7 @@ html, body {
 }
 .board {
   display: inline-block;
-  margin-top: 5%;
+  margin-top: 20px;
 }
 .settings {
   margin-top: 20px;
@@ -18,7 +18,7 @@ html, body {
 .top_bar {
   display: block;
   /*height: 100px;*/
-  /*margin-top: 20px;*/
+  margin-top: 20px;*/
   text-align: center;
 }
 .table {
@@ -79,6 +79,13 @@ html, body {
   	text-decoration: none;
   	text-align: center;
   	font-size: 120%;
-  	
+
     margin-top: 20px;
+}
+.modal-container {
+  position: relative;
+  margin-top: 20px;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
 }
