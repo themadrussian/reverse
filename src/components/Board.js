@@ -1,125 +1,125 @@
 import React from 'react';
 import Tappable from 'react-tappable';
+import { Modal } from 'react-bootstrap';
+import '../css/bootstrap.min.css';
 
 var Board = React.createClass({
   getInitialState: function(){
     return {
-      color: [],
-      won: "",
-      steps: 0,
-      //update: this.props.update,
+      color: [],    //array to hold color values
+      won: false,   //show victory modal
+      steps: 0,     //count steps
     };
-  },
-
-  resetColors: function(reset) {
-    for (var i = 0; i < this.props.cols*this.props.rows; i++) {
-      if(reset === 0) {
-        //force reset on everything
-       this.state.color[i]='red';
-      } else {
-        //only fill out undefined
-        if (this.state.color[i] === undefined) {
-          this.state.color[i]='red';
-        }
-      }
-    };
-
   },
 
   componentWillMount: function() {
-    this.resetColors(0);
-    console.log('Inside Board componentWillMount: ', this.state.color);
+    // fill colors array; first time;
+    for (var i = 0; i < this.props.cols*this.props.rows; i++) {
+      this.state.color[i]=this.props.colorA;
+    }
   },
 
   componentWillReceiveProps: function(nextProps){
-    //compare new and old props
-    console.log("new props update:", nextProps.update);
-    if (nextProps.update === 1){
-      //refill the Array
-      this.resetColors(0);
-      this.state.steps = 0; //reset step counter
-      this.state.won="";
 
+    //Update the Board size
+    if (nextProps.update === 1){
+      console.log("New size, resetting to (rows x cols):", nextProps.rows, "x", nextProps.cols);
+
+      //empty out
+      this.state.color=[];
+      //refill with current colorA
+      for (var i = 0; i < nextProps.rows*nextProps.cols; i++) {
+         this.state.color[i]=this.props.colorA;
+      }
+      //reset step counter and winning flag
+      this.state.steps = 0;
+      this.state.won=false;
+    }
+
+    // Do not upgade the Board size
+    if (nextProps.update === 0){
+      console.log("New colors:", nextProps.colorA, "or", nextProps.colorB);
+
+      //recolor to match current colors
+      for (var i = 0; i < this.props.cols*this.props.rows; i++) {
+        if (this.state.color[i] === this.props.colorA) {
+          this.state.color[i] =nextProps.colorA;
+        } else if (this.state.color[i] === this.props.colorB) {
+          this.state.color[i] =nextProps.colorB;
+        }
+      }
     }
   },
 
   changeColor: function(id) {
-    if (this.state.color[id] === 'red') {
-      this.state.color[id] = 'green';
+    if (this.state.color[id] === this.props.colorA) {
+      this.state.color[id] = this.props.colorB;
     } else {
-      this.state.color[id] = 'red';
+      this.state.color[id] = this.props.colorA;
     }
+
+    // check victory condition
+    this.checkvictory();
 
   },
 
   handleTap: function(id, row, col){
-    console.log('pressed row:', row, ' col: ', col, ' id: ', id, 'and color was: ', this.state.color[id]);
+    console.log('pressed {row, col, id}:', row, col, id);
 
     //step counter
     this.state.steps++;
-    this.state.won="";
 
-    // change the pressed button
+    // Change the pressed button
     this.changeColor(id);
 
-    // now change colors on all neighbors
+    // Change colors on all neighbors
 
     // one to the right: same row, col+1. check col+1 < this.props.cols.
     if ( (col + 1) < this.props.cols ) {
       this.changeColor(this.props.rows*row + (col + 1));
-      console.log('changing: right', this.props.rows*row + (col + 1));
+      //console.log('changing: right', this.props.rows*row + (col + 1));
     }
     // one to the left: same row, col-1. check col-1 >= 0
     if ( (col - 1) >= 0 ) {
       this.changeColor(this.props.rows*row + (col - 1));
-      console.log('changing: left', this.props.rows*row + (col - 1));
+      //console.log('changing: left', this.props.rows*row + (col - 1));
     }
     // one on top: same col, row-1. check row-1 >= 0
     if ( (row - 1) >= 0 ) {
       this.changeColor(this.props.rows*(row-1) + col);
-      console.log('changing: top', this.props.rows*(row-1) + col);
+      //console.log('changing: top', this.props.rows*(row-1) + col);
     }
     // one below: same col, row+1, check row+1 < this.props.rows
     if ( (row + 1) < this.props.rows ) {
       this.changeColor(this.props.rows*(row+1) + col);
-      console.log('changing: bottom', this.props.rows*(row+1) + col);
+      //console.log('changing: bottom', this.props.rows*(row+1) + col);
     }
 
     // and re-render the Board
     this.forceUpdate();
+
   },
 
-  componentDidUpdate: function() {
-    // check that we have an all green event!
+  checkvictory: function() {
+    // populate checker with this.state.color entries
     var checker = new Array(this.props.cols*this.props.rows);
     for (var i=0; i<this.props.cols*this.props.rows; i+=1){
       checker[i] = this.state.color[i];
     }
 
-    // now see if there is 'red' anywhere in checker
-    if (!checker.includes('red')) {
-      // No 'red' found? VICTORY
-      console.log('Checker dimensions: ', this.props.cols, 'by', this.props.rows);
-      //alert("Well Done! Steps: ", this.state.steps);
-      this.state.won = "Well Done!";
-
-      //Now, reset back to default
-      this.resetColors(0);
-
-      //re-render
-      this.forceUpdate();
+    // now see if there is 'colorA' anywhere in checker
+    if (!checker.includes(this.props.colorA) && this.state.won === false) {
+      // No 'colorA' found? VICTORY
+      console.log('Victory!');
+      this.setState({won: true});
     }
-
+    //reset the modal to false
+    this.state.won = false;
   },
 
   render: function() {
-    //fix this.state.color and fill undefined with 'red'
-    if (this.props.update === 1 && this.state.update === 0){
-      this.resetColors(0);
-      this.state.update = 1;
-    } else {
-      this.resetColors(1);
-    }
+
+    let closeme = () => this.setState({ won: false, steps: 0});
 
     var k = 0;
     var row = new Array;
@@ -152,9 +152,18 @@ var Board = React.createClass({
           }
           <br />
           Steps: {this.state.steps}
-          <div className="won">
-            {this.state.won}
+          <div className="modal-container">
+            <Modal
+  	          show={this.state.won}
+  	          onHide={closeme}
+  	          container={this}
+  	          aria-labelledby="contained-modal-title">
+  	          <Modal.Body>
+  								Well Done! Congrats!
+  	          </Modal.Body>
+  	        </Modal>
           </div>
+
         </div>
     );
   }
