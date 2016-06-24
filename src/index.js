@@ -2,7 +2,6 @@ import './css/bootstrap.min.css';
 //import './css/reverse.css';
 import './css/custom.css';
 
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button } from 'react-bootstrap';
@@ -30,10 +29,10 @@ const App = React.createClass({
 		}
 	},
 	componentWillMount() {
-		// Lifecycle function that is triggered just before a component mounts
+		//
 	},
 	componentWillUnmount() {
-		// Lifecycle function that is triggered just before a component unmounts
+		//
 	},
 
 	reShape: function(num) {
@@ -59,6 +58,15 @@ const App = React.createClass({
 			console.log("and change ColorB to:", this.state.colorB)
 		} else {
 			console.log("handleColorChange: recieved incorrect 'which': ", which);
+		}
+	},
+
+	handleVictory: function() {
+		console.log("Victory! from parent");
+		if (this.state.rows < 5) {
+			this.reShape(this.state.rows + 1);
+		} else {
+			this.reShape(3);
 		}
 	},
 
@@ -88,6 +96,7 @@ const App = React.createClass({
 						update={this.state.update}
 						colorA={this.state.colorA}
 						colorB={this.state.colorB}
+						victory={this.handleVictory}
 					/>
 
 					<div className="modal-container">

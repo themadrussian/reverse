@@ -120,7 +120,10 @@ var Board = React.createClass({
 
   render: function() {
 
-    let closeme = () => this.setState({ won: false, steps: 0});
+    let closeme = () => {
+      this.setState({ won: false, steps: 0});
+      this.props.victory();
+    }
 
     var k = 0;
     var row = new Array;

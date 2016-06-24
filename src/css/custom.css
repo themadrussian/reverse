@@ -40,9 +40,10 @@
 }
 .boxie {
   margin: 6px;
-  width: 25px;
-  height: 25px;
+  margin-top: 15px;
+  width: 40px;
+  height: 40px;
   display: inline-block;
   vertical-align: middle;
-  border-radius: 2px;
+  border-radius: 6px;
 }
