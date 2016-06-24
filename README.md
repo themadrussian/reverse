@@ -2,7 +2,8 @@
 
 Simple game to convert all red squares to green squares. My attempt to learn the "new" tools and methods.
 
-![alt tag](https://raw.githubusercontent.com/themadrussian/reverse/master/www/img/Reverse_main_screen.png)
+![alt tag]
+(www/img/Reverse_main_screen.png)
 
 ### Run the app in the browser / simulator
 
