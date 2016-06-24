@@ -2,6 +2,9 @@
 
 Simple game to convert all red squares to green squares. My attempt to learn the "new" tools and methods.
 
+![alt tag]
+(www/img/Reverse_main_screen.png)
+
 ### Run the app in the browser / simulator
 
 Run this to start the development webpack server:
