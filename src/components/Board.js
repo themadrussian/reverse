@@ -58,10 +58,6 @@ var Board = React.createClass({
     } else {
       this.state.color[id] = this.props.colorA;
     }
-
-    // check victory condition
-    this.checkvictory();
-
   },
 
   handleTap: function(id, row, col){
@@ -99,6 +95,9 @@ var Board = React.createClass({
     // and re-render the Board
     this.forceUpdate();
 
+
+    // check victory condition
+    this.checkvictory();
   },
 
   checkvictory: function() {
