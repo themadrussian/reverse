@@ -2,12 +2,9 @@
 
 Simple game to convert all red squares to green squares. My attempt to learn the "new" tools and methods.
 
-<<<<<<< HEAD
 ![screnshot]
 (www/img/Reverse_main_screen.png)
 
-=======
->>>>>>> f3ae4966131df02f573812d81225ef1987bff86d
 # Dev Environment
 The main point for me to create this game was to better learn React.js. In the proccess, i learned a little more than just React.js:
 - Node.js and NMP
