@@ -1,11 +1,16 @@
 import './css/bootstrap.min.css';
-import './css/reverse.css';
+//import './css/reverse.css';
+import './css/custom.css';
+
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Tappable from 'react-tappable';
 import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
+import { Tab } from 'react-bootstrap';
+import { Tabs } from 'react-bootstrap';
+import { PageHeader } from 'react-bootstrap';
+import { Glyphicon } from 'react-bootstrap';
 
 import Board from './components/Board';
 import { SliderPicker } from 'react-color';
@@ -31,9 +36,17 @@ const App = React.createClass({
 		// Lifecycle function that is triggered just before a component unmounts
 	},
 
-	reShape: function(rows, cols) {
-		console.log("reShape (rows x cols): ", rows, "x", cols);
-		this.setState({ rows: rows, cols: cols, update: 1});
+	reShape: function(num) {
+		if (num > 0) {
+			console.log("reShape (rows x cols): ", num, "x", num);
+			this.setState({ rows: num, cols: num, update: 1});
+		} else if (num === -1 ){
+			//open modal for From color
+			this.setState({ showModalA: true, showModalB: false, update: 0})
+		} else {
+			//open modal for To color
+			this.setState({ showModalA: false, showModalB: true, update: 0})
+		}
 	},
 
 	handleColorChange: function(which, color) {
@@ -53,51 +66,22 @@ const App = React.createClass({
 		let close = () => this.setState({ showModalA: false, showModalB: false});
 
 		return (
-			<div className="_all">
-				<div className="top_bar">
-					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 3, 3)}>3x3</Tappable>&nbsp;
-					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 4, 4)}>4x4</Tappable>&nbsp;
-					<Tappable className="button" component="button" onTap={this.reShape.bind(null, 5, 5)}>5x5</Tappable>
-    		</div>
-				<div className="modal-container">
-	        <Button
-	          bsStyle="primary"
-	          bsSize="large"
-	          onClick={() => this.setState({ showModalA: true, showModalB: false, update: 0})}
-						style={{ backgroundColor: this.state.colorA, width: "80px"}}>
-	          From
-	        </Button>
-					&nbsp;&nbsp;
-					<Button
-	          bsStyle="primary"
-	          bsSize="large"
-	          onClick={() => this.setState({ showModalB: true, showModalA: false, update: 0})}
-						style={{ backgroundColor: this.state.colorB, width: "80px"}}>
-	          To
-	        </Button>
-
-	        <Modal
-	          show={this.state.showModalA}
-	          onHide={close}
-	          container={this}
-	          aria-labelledby="contained-modal-title">
-	          <Modal.Body>
-								<SliderPicker onChange={this.handleColorChange.bind(this,"colorFrom")} color={this.state.colorA}/>
-	          </Modal.Body>
-	        </Modal>
-
-					<Modal
-	          show={this.state.showModalB}
-	          onHide={close}
-	          container={this}
-	          aria-labelledby="contained-modal-title">
-	          <Modal.Body>
-								<SliderPicker onChange={this.handleColorChange.bind(this,"colorTo")} color={this.state.colorB}/>
-	          </Modal.Body>
-	        </Modal>
-
-	      </div>
-				<div className="board">
+			<div className="big-center">
+					<PageHeader>
+						Reverse All
+						<br/>
+							<span
+								className="boxie"
+								onClick={() => this.setState({ showModalA: true, showModalB: false, update: 0})}
+								style={{backgroundColor: this.state.colorA}}>
+							</span>
+							&#10143;
+							<span
+								className="boxie"
+								onClick={() => this.setState({ showModalA: false, showModalB: true, update: 0})}
+								style={{backgroundColor: this.state.colorB}}>
+							</span>
+					</PageHeader>
 					<Board
 						rows={this.state.rows}
 						cols={this.state.cols}
@@ -105,7 +89,48 @@ const App = React.createClass({
 						colorA={this.state.colorA}
 						colorB={this.state.colorB}
 					/>
-				</div>
+
+					<div className="modal-container">
+		        <Modal
+		          show={this.state.showModalA}
+		          onHide={close}
+		          container={this}
+		          aria-labelledby="contained-modal-title">
+		          <Modal.Body>
+									<SliderPicker onChange={this.handleColorChange.bind(this,"colorFrom")} color={this.state.colorA}/>
+		          </Modal.Body>
+		        </Modal>
+
+						<Modal
+		          show={this.state.showModalB}
+		          onHide={close}
+		          container={this}
+		          aria-labelledby="contained-modal-title">
+		          <Modal.Body>
+									<SliderPicker onChange={this.handleColorChange.bind(this,"colorTo")} color={this.state.colorB}/>
+		          </Modal.Body>
+		        </Modal>
+	      	</div>
+
+					<div className="bottom">
+						<div
+							className="circle"
+							onClick={this.reShape.bind(this,3)}
+							style={{backgroundColor: this.state.colorA}}>
+	      		</div>
+						<div className="spacer">&nbsp;</div>
+						<div
+							className="circle"
+							onClick={this.reShape.bind(this,4)}
+							style={{backgroundColor: "#000"}}>
+	      		</div>
+						<div className="spacer">&nbsp;</div>
+						<div
+							className="circle"
+							onClick={this.reShape.bind(this,5)}
+							style={{backgroundColor: this.state.colorB}}>
+	      		</div>
+					</div>
 			</div>
 		);
 	},
