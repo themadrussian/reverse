@@ -3,10 +3,11 @@
     <name>Reverse</name>
     <description>
 		A small game
-	</description>
+    </description>
     <author email="mark@ntelligent.ly" href="https://github.com/themadrussian/reverse">
 		Mark Rogov and ntelligent team
-	</author>
+  	</author>
+    <icon src="icon.png" />
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -35,32 +36,28 @@
         <splash density="port-xxxhdpi" src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
-        <icon height="57" platform="ios" src="res/icon/ios/icon.png" width="57" />
-        <icon height="114" platform="ios" src="res/icon/ios/icon@2x.png" width="114" />
-        <icon height="40" platform="ios" src="res/icon/ios/icon-40.png" width="40" />
-        <icon height="80" platform="ios" src="res/icon/ios/icon-40@2x.png" width="80" />
-        <icon height="50" platform="ios" src="res/icon/ios/icon-50.png" width="50" />
-        <icon height="100" platform="ios" src="res/icon/ios/icon-50@2x.png" width="100" />
-        <icon height="60" platform="ios" src="res/icon/ios/icon-60.png" width="60" />
-        <icon height="120" platform="ios" src="res/icon/ios/icon-60@2x.png" width="120" />
-        <icon height="180" platform="ios" src="res/icon/ios/icon-60@3x.png" width="180" />
-        <icon height="72" platform="ios" src="res/icon/ios/icon-72.png" width="72" />
-        <icon height="144" platform="ios" src="res/icon/ios/icon-72@2x.png" width="144" />
-        <icon height="76" platform="ios" src="res/icon/ios/icon-76.png" width="76" />
-        <icon height="152" platform="ios" src="res/icon/ios/icon-76@2x.png" width="152" />
-        <icon height="29" platform="ios" src="res/icon/ios/icon-small.png" width="29" />
-        <icon height="58" platform="ios" src="res/icon/ios/icon-small@2x.png" width="58" />
-        <icon height="87" platform="ios" src="res/icon/ios/icon-small@3x.png" width="87" />
-        <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
-        <splash height="1334" platform="ios" src="res/screen/ios/Default-667h.png" width="750" />
-        <splash height="2208" platform="ios" src="res/screen/ios/Default-736h.png" width="1242" />
-        <splash height="1242" platform="ios" src="res/screen/ios/Default-Landscape-736h.png" width="2208" />
-        <splash height="1536" platform="ios" src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />
-        <splash height="768" platform="ios" src="res/screen/ios/Default-Landscape~ipad.png" width="1024" />
-        <splash height="2048" platform="ios" src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
-        <splash height="1024" platform="ios" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
-        <splash height="960" platform="ios" src="res/screen/ios/Default@2x~iphone.png" width="640" />
-        <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" />
+        <icon height="57" src="resources/ios/icon/icon.png" width="57" />
+        <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
+        <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
+        <icon height="80" src="resources/ios/icon/icon-40@2x.png" width="80" />
+        <icon height="120" src="resources/ios/icon/icon-40@3x.png" width="120" />
+        <icon height="50" src="resources/ios/icon/icon-50.png" width="50" />
+        <icon height="100" src="resources/ios/icon/icon-50@2x.png" width="100" />
+        <icon height="60" src="resources/ios/icon/icon-60.png" width="60" />
+        <icon height="120" src="resources/ios/icon/icon-60@2x.png" width="120" />
+        <icon height="72" src="resources/ios/icon/icon-72.png" width="72" />
+        <icon height="144" src="resources/ios/icon/icon-72@2x.png" width="144" />
+        <icon height="76" src="resources/ios/icon/icon-76.png" width="76" />
+        <icon height="152" src="resources/ios/icon/icon-76@2x.png" width="152" />
+        <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />
+        <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
+        <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
+        <splash height="1136" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" />
+        <splash height="1334" src="resources/ios/splash/Default-667h.png" width="750" />
+        <splash height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
+        <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
+        <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
+        <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="res/icon/wp8/ApplicationIcon.png" width="99" />
@@ -71,7 +68,6 @@
         <icon height="150" platform="windows" src="res/icon/windows/Square150x150Logo.scale-100.png" width="150" />
         <icon height="30" platform="windows" src="res/icon/windows/Square30x30Logo.scale-100.png" width="30" />
         <icon height="50" platform="windows" src="res/icon/windows/StoreLogo.scale-100.png" width="50" />
-        <splash height="300" platform="windows" src="res/screen/windows/SplashScreen.scale-100.png" width="620" />
         <icon height="120" platform="windows" src="res/icon/windows/StoreLogo.scale-240.png" width="120" />
         <icon height="44" platform="windows" src="res/icon/windows/Square44x44Logo.scale-100.png" width="44" />
         <icon height="106" platform="windows" src="res/icon/windows/Square44x44Logo.scale-240.png" width="106" />
@@ -82,15 +78,9 @@
         <icon height="310" platform="windows" src="res/icon/windows/Square310x310Logo.scale-100.png" width="310" />
         <icon height="150" platform="windows" src="res/icon/windows/Wide310x150Logo.scale-100.png" width="310" />
         <icon height="360" platform="windows" src="res/icon/windows/Wide310x150Logo.scale-240.png" width="744" />
+        <splash height="300" platform="windows" src="res/screen/windows/SplashScreen.scale-100.png" width="620" />
         <splash height="1920" platform="windows" src="res/screen/windows/SplashScreenPhone.scale-240.png" width="1152" />
     </platform>
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
     <platform name="android">
         <content src="http://10.0.2.2:8080/index.html" />
         <allow-intent href="market:*" />
@@ -101,6 +91,14 @@
         <allow-intent href="itms-apps:*" />
         <allow-navigation href="http://*/*" />
     </platform>
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <plugin name="cordova-plugin-statusbar" spec="~2.1.0" />
+    <icon src="resources/ios/icon/icon-small@3x.png" />
 </widget>

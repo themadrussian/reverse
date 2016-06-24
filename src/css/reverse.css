@@ -11,6 +11,8 @@ html, body {
 .board {
   display: inline-block;
   margin-top: 20px;
+  /*width: 100%;
+  align: center;*/
 }
 .settings {
   margin-top: 20px;
