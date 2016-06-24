@@ -2,6 +2,18 @@
 
 Simple game to convert all red squares to green squares. My attempt to learn the "new" tools and methods.
 
+![screnshot]
+(www/img/Reverse_main_screen.png)
+
+# Dev Environment
+The main point for me to create this game was to better learn React.js. In the proccess, i learned a little more than just React.js:
+- Node.js and NMP
+- Cordova and Phonegap (basic understaning)
+- React Hot Loader (edit the code; have it hot loaded; and not lose any state of the components between loads)
+- Bootstrap and react.bootstrap in particular
+ 
+If you are interested to play with this project, or make your own, follow the steps below.
+
 ### Run the app in the browser / simulator
 
 Run this to start the development webpack server:

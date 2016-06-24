@@ -1,7 +1,8 @@
 import React from 'react';
-import Tappable from 'react-tappable';
+import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 import '../css/bootstrap.min.css';
+import '../css/custom.css';
 
 var Board = React.createClass({
   getInitialState: function(){
@@ -57,10 +58,6 @@ var Board = React.createClass({
     } else {
       this.state.color[id] = this.props.colorA;
     }
-
-    // check victory condition
-    this.checkvictory();
-
   },
 
   handleTap: function(id, row, col){
@@ -98,6 +95,9 @@ var Board = React.createClass({
     // and re-render the Board
     this.forceUpdate();
 
+
+    // check victory condition
+    this.checkvictory();
   },
 
   checkvictory: function() {
@@ -112,6 +112,7 @@ var Board = React.createClass({
       // No 'colorA' found? VICTORY
       console.log('Victory!');
       this.setState({won: true});
+      //console.log('check array:', checker);
     }
     //reset the modal to false
     this.state.won = false;
@@ -119,7 +120,10 @@ var Board = React.createClass({
 
   render: function() {
 
-    let closeme = () => this.setState({ won: false, steps: 0});
+    let closeme = () => {
+      this.setState({ won: false, steps: 0});
+      this.props.victory();
+    }
 
     var k = 0;
     var row = new Array;
@@ -127,31 +131,30 @@ var Board = React.createClass({
     for (var i=0; i<this.props.cols*this.props.rows; i+=Number(this.props.cols)) {
       row[k] = [...Array(Number(this.props.cols)).keys()].map(function(item,index){
         return (
-          <Tappable
+          <Button
               key={((Number(this.props.cols)*k)+index)}
-              onTap={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
-              className="cell"
+              onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
+              className="cellll"
               style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
 
-          </Tappable>
+          </Button>
         );
       }.bind(this));
       k = k + 1;
     };
 
     return (
-        <div className="table">
+        <div className="container game">
           {
             row.map(function(_row,index){
               return (
-                  <div className="row" key={index}>
+                  <div className="rowww" key={index}>
                   {_row}
                   </div>
                 )
             })
+
           }
-          <br />
-          Steps: {this.state.steps}
           <div className="modal-container">
             <Modal
   	          show={this.state.won}
@@ -159,7 +162,8 @@ var Board = React.createClass({
   	          container={this}
   	          aria-labelledby="contained-modal-title">
   	          <Modal.Body>
-  								Well Done! Congrats!
+  								Well Done!<br />
+                  It only took you {this.state.steps} steps.
   	          </Modal.Body>
   	        </Modal>
           </div>
