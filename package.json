@@ -1,6 +1,6 @@
 {
-  "name": "phonegap-template-react-hot-loader",
-  "version": "1.1.1",
+  "name": "ntellignet-game-reverse",
+  "version": "1.0",
   "description": "PhoneGap Template using React, ES2015, Webpack, and hot module reloading",
   "main": "src/index.js",
   "repository": {
@@ -46,18 +46,18 @@
     "phonegap:template"
   ],
   "bugs": {
-    "url": "https://github.com/phonegap/phonegap-template-react-hot-loader/issues"
+    "url": "https://github.com/themadrussian/reverse/issues"
   },
-  "homepage": "https://github.com/phonegap/phonegap-template-react-hot-loader#readme",
-  "author": "Jed Watson",
+  "homepage": "https://github.com/themadrussian/reverse",
+  "author": "Mark Rogov",
   "contributors": [
     {
-      "name": "Tommy-Carlos Williams",
-      "email": "tommy@devgeeks.org"
+      "name": "Mark Rogov",
+      "email": "mark@ntelligent.ly"
     },
     {
-      "name": "Jed Watson",
-      "email": "jed.watson@me.com"
+      "name": "Eugene Yamnitski",
+      "email": "eugene@ntelligent.ly"
     }
   ],
   "license": "MIT"
