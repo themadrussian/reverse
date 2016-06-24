@@ -69,4 +69,4 @@ After that, the normal Cordova / PhoneGap commands can be used such as `phonegap
 
 # License
 
-MIT. Copyright (c) 2016 Jed Watson.
+MIT. Copyright (c) 2016 Mark Rogov.
