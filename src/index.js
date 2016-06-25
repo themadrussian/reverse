@@ -4,13 +4,7 @@ import './css/custom.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'react-bootstrap';
-import { Modal } from 'react-bootstrap';
-import { Tab } from 'react-bootstrap';
-import { Tabs } from 'react-bootstrap';
-import { PageHeader } from 'react-bootstrap';
-import { Glyphicon } from 'react-bootstrap';
-
+import { Button, Modal, PageHeader,  } from 'react-bootstrap';
 import Board from './components/Board';
 import { SliderPicker } from 'react-color';
 
