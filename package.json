@@ -1,11 +1,11 @@
 {
   "name": "ntellignet-game-reverse",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "PhoneGap Template using React, ES2015, Webpack, and hot module reloading",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phonegap/phonegap-template-react-hot-loader.git"
+    "url": "git+https://github.com/themadrussian/reverse.git"
   },
   "dependencies": {
     "babel-core": "^6.4.5",
