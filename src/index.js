@@ -1,16 +1,15 @@
-import './css/bootstrap.min.css';
-//import './css/reverse.css';
-import './css/custom.css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Modal, PageHeader,  } from 'react-bootstrap';
-import Board from './components/Board';
 import { SliderPicker } from 'react-color';
+
+import './css/bootstrap.min.css';
+import './css/custom.css';
+
+import Board from './components/Board';
 
 const App = React.createClass({
 	getInitialState() {
-		//return StepStore.getState();
 		return {
 			animationName: 'push',
 			rows: 3,
@@ -21,12 +20,6 @@ const App = React.createClass({
 			showModalA: false,
 			showModalB: false
 		}
-	},
-	componentWillMount() {
-		//
-	},
-	componentWillUnmount() {
-		//
 	},
 
 	reShape: function(num) {
@@ -70,7 +63,7 @@ const App = React.createClass({
 		return (
 			<div className="big-center">
 					<PageHeader>
-						Reverse All
+						Reverse
 						<br/>
 							<span
 								className="boxie"
@@ -120,18 +113,21 @@ const App = React.createClass({
 							className="circle"
 							onClick={this.reShape.bind(this,3)}
 							style={{backgroundColor: this.state.colorA}}>
+							<h4>3x3</h4>
 	      		</div>
 						<div className="spacer">&nbsp;</div>
 						<div
 							className="circle"
 							onClick={this.reShape.bind(this,4)}
 							style={{backgroundColor: "#000"}}>
+							<h4>4x4</h4>
 	      		</div>
 						<div className="spacer">&nbsp;</div>
 						<div
 							className="circle"
 							onClick={this.reShape.bind(this,5)}
 							style={{backgroundColor: this.state.colorB}}>
+							<h4>5x5</h4>
 	      		</div>
 					</div>
 			</div>

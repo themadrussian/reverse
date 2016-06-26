@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
+
 import '../css/bootstrap.min.css';
 import '../css/custom.css';
 
@@ -8,7 +8,7 @@ var Board = React.createClass({
   getInitialState: function(){
     return {
       color: [],    //array to hold color values
-      won: false,   //show victory modal
+      win: false,   //show victory modal
       steps: 0,     //count steps
     };
   },
@@ -34,7 +34,7 @@ var Board = React.createClass({
       }
       //reset step counter and winning flag
       this.state.steps = 0;
-      this.state.won=false;
+      this.state.win=false;
     }
 
     // Do not upgade the Board size
@@ -97,31 +97,21 @@ var Board = React.createClass({
 
 
     // check victory condition
-    this.checkvictory();
+    this.checkVictory();
   },
 
-  checkvictory: function() {
-    // populate checker with this.state.color entries
-    var checker = new Array(this.props.cols*this.props.rows);
-    for (var i=0; i<this.props.cols*this.props.rows; i+=1){
-      checker[i] = this.state.color[i];
-    }
+  checkVictory: function() {
+    this.state.win = !this.state.color.reduce((a,b)=> (a || (b === this.props.colorA)), false);
 
-    // now see if there is 'colorA' anywhere in checker
-    if (!checker.includes(this.props.colorA) && this.state.won === false) {
-      // No 'colorA' found? VICTORY
+    if (this.state.win === true) {
       console.log('Victory!');
-      this.setState({won: true});
-      //console.log('check array:', checker);
     }
-    //reset the modal to false
-    this.state.won = false;
   },
 
   render: function() {
 
     let closeme = () => {
-      this.setState({ won: false, steps: 0});
+      this.setState({ win: false, steps: 0});
       this.props.victory();
     }
 
@@ -131,13 +121,13 @@ var Board = React.createClass({
     for (var i=0; i<this.props.cols*this.props.rows; i+=Number(this.props.cols)) {
       row[k] = [...Array(Number(this.props.cols)).keys()].map(function(item,index){
         return (
-          <Button
-              key={((Number(this.props.cols)*k)+index)}
-              onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
-              className="cellll"
-              style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
+          <span
+            key={((Number(this.props.cols)*k)+index)}
+            className="boxie_large"
+            onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
+            style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
+          </span>
 
-          </Button>
         );
       }.bind(this));
       k = k + 1;
@@ -157,7 +147,7 @@ var Board = React.createClass({
           }
           <div className="modal-container">
             <Modal
-  	          show={this.state.won}
+  	          show={this.state.win}
   	          onHide={closeme}
   	          container={this}
   	          aria-labelledby="contained-modal-title">
