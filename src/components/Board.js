@@ -115,27 +115,39 @@ var Board = React.createClass({
       this.props.victory();
     }
 
-    var k = 0;
-    var row = new Array;
-
-    for (var i=0; i<this.props.cols*this.props.rows; i+=Number(this.props.cols)) {
-      row[k] = [...Array(Number(this.props.cols)).keys()].map(function(item,index){
-        return (
-          <span
-            key={((Number(this.props.cols)*k)+index)}
-            className="boxie_large"
-            onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
-            style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
-          </span>
-
-        );
-      }.bind(this));
-      k = k + 1;
-    };
+    // var k = 0;
+    // var row = new Array;
+    //
+    // for (var i=0; i<this.props.cols*this.props.rows; i+=Number(this.props.cols)) {
+    //   row[k] = [...Array(Number(this.props.cols)).keys()].map(function(item,index){
+    //     return (
+    //       <div className="hex"
+    //       key={((Number(this.props.cols)*k)+index)}
+    //       className="hexagon"
+    //       onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
+    //       style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
+    //         <div className="corner-1"
+    //         key={((Number(this.props.cols)*k)+index+100)}
+    //         className="hexagon"
+    //         onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
+    //         style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
+    //         </div>
+    //         <div className="corner-2"
+    //         key={((Number(this.props.cols)*k)+index+101)}
+    //         className="hexagon"
+    //         onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
+    //         style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
+    //         </div>
+    //       </div>
+    //
+    //     );
+    //   }.bind(this));
+    //   k = k + 1;
+    // };
 
     return (
         <div className="container game">
-          {
+          {/*{
             row.map(function(_row,index){
               return (
                   <div className="rowww" key={index}>
@@ -144,7 +156,62 @@ var Board = React.createClass({
                 )
             })
 
-          }
+          }*/}
+          <div className="rowww">
+            <div style={{marginRight: "60px", marginLeft: "40px", float: "left", display: "inline-block", border: "1px black"}}>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+            <div style={{marginRight: "60px", float: "left", display: "inline-block", border: "1px black"}}>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+            <div>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+          </div>
+          <div className="rowww2">
+            <div style={{marginRight: "60px", marginLeft: "40px", float: "left", display: "inline-block", border: "1px black"}}>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+            <div style={{marginRight: "60px", float: "left", display: "inline-block", border: "1px black"}}>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+          </div>
+          <div className="rowww">
+            <div style={{marginRight: "60px", marginLeft: "40px", float: "left", display: "inline-block", border: "1px black"}}>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+            <div style={{marginRight: "60px", float: "left", display: "inline-block", border: "1px black"}}>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+            <div>
+              <div className="hex first">
+                <div className="corner-1"></div>
+                <div className="corner-2"></div>
+              </div>
+            </div>
+          </div>
+
           <div className="modal-container">
             <Modal
   	          show={this.state.win}
