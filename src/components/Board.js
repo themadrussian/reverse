@@ -97,25 +97,15 @@ var Board = React.createClass({
 
 
     // check victory condition
-    this.checkvictory();
+    this.checkVictory();
   },
 
-  checkvictory: function() {
-    // populate checker with this.state.color entries
-    var checker = new Array(this.props.cols*this.props.rows);
-    for (var i=0; i<this.props.cols*this.props.rows; i+=1){
-      checker[i] = this.state.color[i];
-    }
+  checkVictory: function() {
+    this.state.won = !this.state.color.reduce((a,b)=> (a || (b === this.props.colorA)), false);
 
-    // now see if there is 'colorA' anywhere in checker
-    if (!checker.includes(this.props.colorA) && this.state.won === false) {
-      // No 'colorA' found? VICTORY
+    if (this.state.won === true) {
       console.log('Victory!');
-      this.setState({won: true});
-      //console.log('check array:', checker);
     }
-    //reset the modal to false
-    this.state.won = false;
   },
 
   render: function() {
