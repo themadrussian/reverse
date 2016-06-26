@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
+
 import '../css/bootstrap.min.css';
 import '../css/custom.css';
 
@@ -8,7 +9,7 @@ var Board = React.createClass({
   getInitialState: function(){
     return {
       color: [],    //array to hold color values
-      won: false,   //show victory modal
+      win: false,   //show victory modal
       steps: 0,     //count steps
     };
   },
@@ -34,7 +35,7 @@ var Board = React.createClass({
       }
       //reset step counter and winning flag
       this.state.steps = 0;
-      this.state.won=false;
+      this.state.win=false;
     }
 
     // Do not upgade the Board size
@@ -101,9 +102,9 @@ var Board = React.createClass({
   },
 
   checkVictory: function() {
-    this.state.won = !this.state.color.reduce((a,b)=> (a || (b === this.props.colorA)), false);
+    this.state.win = !this.state.color.reduce((a,b)=> (a || (b === this.props.colorA)), false);
 
-    if (this.state.won === true) {
+    if (this.state.win === true) {
       console.log('Victory!');
     }
   },
@@ -111,7 +112,7 @@ var Board = React.createClass({
   render: function() {
 
     let closeme = () => {
-      this.setState({ won: false, steps: 0});
+      this.setState({ win: false, steps: 0});
       this.props.victory();
     }
 
@@ -147,7 +148,7 @@ var Board = React.createClass({
           }
           <div className="modal-container">
             <Modal
-  	          show={this.state.won}
+  	          show={this.state.win}
   	          onHide={closeme}
   	          container={this}
   	          aria-labelledby="contained-modal-title">
