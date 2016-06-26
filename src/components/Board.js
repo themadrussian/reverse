@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { Modal } from 'react-bootstrap';
 
 import '../css/bootstrap.min.css';
@@ -122,13 +121,13 @@ var Board = React.createClass({
     for (var i=0; i<this.props.cols*this.props.rows; i+=Number(this.props.cols)) {
       row[k] = [...Array(Number(this.props.cols)).keys()].map(function(item,index){
         return (
-          <Button
-              key={((Number(this.props.cols)*k)+index)}
-              onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
-              className="cellll"
-              style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
+          <span
+            key={((Number(this.props.cols)*k)+index)}
+            className="boxie_large"
+            onClick={this.handleTap.bind(null, ((this.props.cols*k)+index), k, index)}
+            style={{backgroundColor: this.state.color[((Number(this.props.cols)*k)+index)]}}>
+          </span>
 
-          </Button>
         );
       }.bind(this));
       k = k + 1;

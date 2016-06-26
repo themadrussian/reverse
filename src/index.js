@@ -63,7 +63,7 @@ const App = React.createClass({
 		return (
 			<div className="big-center">
 					<PageHeader>
-						Reverse All
+						Reverse
 						<br/>
 							<span
 								className="boxie"
