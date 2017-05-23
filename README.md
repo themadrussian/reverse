@@ -2,8 +2,7 @@
 
 Simple game to convert all red squares to green squares. My attempt to learn the "new" tools and methods.
 
-![screnshot]
-(www/img/Reverse_main_screen.png)
+![](./www/img/Reverse_main_screen.png "screnshot")
 
 # Dev Environment
 The main point for me to create this game was to better learn React.js. In the proccess, i learned a little more than just React.js:
