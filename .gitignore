@@ -38,3 +38,7 @@ platforms
 
 # Webpack bundle
 www/bundle.js
+
+# Vite production output
+dist/
+.vite/

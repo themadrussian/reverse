@@ -1,71 +1,44 @@
-# Reverse game
+# Reverse
 
-Simple game to convert all red squares to green squares. My attempt to learn the "new" tools and methods.
+A small tile-flipping puzzle, modernized from the original 2016 React / Cordova app to React and Vite.
 
-![](./www/img/Reverse_main_screen.png "screnshot")
+Click or tap a tile to flip it and its orthogonal neighbors. Turn every tile into the target color to win. Choose a 3 × 3, 4 × 4, or 5 × 5 board, or customize both colors. Completing a board advances to the next size; 5 × 5 cycles back to 3 × 3. Selecting a size, including the current size, resets the puzzle.
 
-# Dev Environment
-The main point for me to create this game was to better learn React.js. In the proccess, i learned a little more than just React.js:
-- Node.js and NMP
-- Cordova and Phonegap (basic understaning)
-- React Hot Loader (edit the code; have it hot loaded; and not lose any state of the components between loads)
-- Bootstrap and react.bootstrap in particular
+## Development
 
-If you are interested to play with this project, or make your own, follow the steps below.
+Use Node.js 20.19+ or 22.12+ (a current supported LTS release is recommended).
 
-### Run the app in the browser / simulator
-
-Run this to start the development webpack server:
-
-```
-npm start
+```sh
+npm install
+npm run dev
 ```
 
-You can then open the app in your browser by visiting [localhost:8080](http://localhost:8080)
+Open the local URL printed by Vite. `npm start` is also available.
 
-Open it in the iOS Simulator by running (in another terminal):
-
-```
-cordova platform add ios
-```
-
-```
-npm run ios
+```sh
+npm test          # Game rules, boundaries, victory, resets, progression
+npm run build    # Production output in dist/
+npm run preview  # Serve the production build locally
 ```
 
-Or in the Android emulator with:
+Deploy `dist/` to any static web host. Relative asset URLs support hosting under a subdirectory.
 
-```
-cordova platform add android
-```
+## Migration review
 
-```
-npm run android
-```
+- Replaced Webpack 1, Babel 6, mismatched React / React DOM versions, and React.createClass with Vite, matching modern React packages, function components, and hooks.
+- Replaced direct state mutation, forceUpdate, and deprecated lifecycle methods with immutable reducer updates.
+- Store tile values as booleans, independent of display colors. Changing either color preserves the puzzle and move count, even when colors match; a dot also identifies target tiles.
+- Replaced old Bootstrap modals, react-color, and clickable spans with native buttons, color inputs, a responsive CSS grid, and a modal dialog with keyboard focus management.
+- Removed unused runtime packages and Cordova build hooks from the active project. `npm install` no longer attempts to run Cordova.
+- Preserved the old platform configuration, images, build files, and resources in `legacy/` for reference. Native iOS/Android packaging is not part of the Vite workflow.
 
-(both of which are just calling `cordova run ios` and `cordova run android`)
+## Source
 
-In this mode, the app will live-reload changes to React components using [react-hot-loader](https://github.com/gaearon/react-hot-loader) and CSS changes using the Webpack CSS loader.
+- `src/App.jsx`: controls, game state, and completion dialog.
+- `src/components/Board.jsx`: accessible tile buttons.
+- `src/game.js`: pure game rules and reducer.
+- `src/game.test.js`: game regression tests using Node's built-in test runner.
 
-### Build the app for production
-
-To build the app without the development hot module reloading server:
-
-```
-npm run build [ -- ios || android]
-```
-
-i.e.:
-
-```
-npm run prepare -- ios
-npm run prepare -- android
-```
-
-This will switch your `config.xml` file to production mode, build the app bundle to `/www` using Webpack, and run `cordova build` for you.
-
-After that, the normal Cordova / PhoneGap commands can be used such as `phonegap serve`, or `cordova run ios`, etc.
-
-# License
+## License
 
 MIT. Copyright (c) 2016 Mark Rogov.
